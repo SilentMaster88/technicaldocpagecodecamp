@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav id="navbar">
+      <header>Android Documentation</header>
+      <ul>
+        <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+        <li>
+          <a class="nav-link" href="#Developers_Guides"
+            >Developers Guides</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="#App_Resources">App Resources</a>
+        </li>
+        <li><a class="nav-link" href="#App_Architecture">App Architecture</a></li>
+
+        <li>
+          <a class="nav-link" href="#App_Fundamentals">App Fundamentals</a>
+        </li>
+        <li><a class="nav-link" href="#Create_Android_Project">Create Android Project </a></li>
+
+        <li><a class="nav-link" href="#App_Compatibility">App Compatibility</a></li>
+     <li><a class="nav-link" href="#Code_Examples">Code Examples</a></li>
+      </ul>
+    </nav>
+    <main id="main-doc">
+       <section class="main-section" id="Introduction">
+        <header>Introduction</header>
+        <article>
+          <p>
+            Welcome to the Android developer guides. These documents teach you how to build Android apps using APIs in the Android framework and other libraries.
+     <br>
+            If you're brand new to Android and want to jump into code, start with the Build Your First App tutorial.
+          </p>
+         </article>
+      </section>
+     <section class="main-section" id="Developers_Guides">
+        <header>Developers Guides</header>
+        <article>
+          <p>
+            And check out these other resources to learn Android development:
+            <ul>
+            <li>
+              <p>
+             Codelabs: Short, self-paced tutorials that each cover a discrete topic. Most codelabs step you through the process of building a small app, or adding a new feature to an existing app.
+              </p>
+            </li>
+              <li>
+                <p>
+                  Courses: Guided training paths that teach    you how to build Android apps.
+                </p>
+                 </li>
+               <li>
+                <p>
+                 Online training: If you prefer to learn online with videos, check out the Developing Android Apps with Kotlin course on Udacity (trailer embedded here), and other online courses below.
+                </p>
+                 </li>
+          </ul>
+         </p>
+         </article>
+    </section>
+     <section class="main-section" id="App_Resources">
+        <header>App Resources</header>
+        <article>
+          <p>
+            Resources are the additional files and static content that your code uses, such as bitmaps, layout definitions, user interface strings, animation instructions, and more.
+    <br>
+    You should always externalize app resources such as images and strings from your code, so that you can maintain them independently. You should also provide alternative resources for specific device configurations, by grouping them in specially-named resource directories. At runtime, Android uses the appropriate resource based on the current configuration. For example, you might want to provide a different UI layout depending on the screen size or different strings depending on the language setting.
+    <br>
+    Once you externalize your app resources, you can access them using resource IDs that are generated in your project's R class. This document shows you how to group your resources in your Android project and provide alternative resources for specific device configurations, and then access them from your app code or other XML files.
+           </p>
+          <p>
+           You should place each type of resource in a specific subdirectory of your project's res/ directory. For example, here's the file hierarchy for a simple project:
+          </p>
+            <br>
+            <code>
+             MyProject/
+        src/
+            MyActivity.java
+        res/
+            drawable/
+                graphic.png
+            layout/
+                main.xml
+                info.xml
+            mipmap/
+                icon.png
+            values/
+                strings.xml
+            </code>
+
+         </article>
+    </section>
+    <section class="main-section" id="App_Architecture">
+        <header>App Architecture</header>
+        <article>
+          <p>
+            App architecture design is an important consideration for ensuring that your apps are robust, testable, and maintainable. Android provides a set of libraries and components to help you put together your app according to best practices.
+            <br>
+            You can also follow these guides: <br>
+            <ul>
+              <li>
+                Learn the basics of putting together a robust app with the Guide to app architecture.
+        </li>
+              <li>
+                 Improve the user experience by fine-tuning app navigation.
+              </li>
+              <li>
+                Reduce boilerplate and make your code easier to maintain with the dependency injection guides.
+              </li>
+          </ul>
+          </p>
+      </article>
+    </section>
+    <section class="main-section" id="App_Fundamentals">
+        <header>App Fundamentals</header>
+        <article>
+          <p>
+           Android apps can be written using Kotlin, Java, and C++ languages. The Android SDK tools compile your code along with any data and resource files into an APK or an Android App Bundle.
+    <br>
+            An Android package, which is an archive file with an <code>.apk</code> suffix, contains the contents of an Android app that are required at runtime and it is the file that Android-powered devices use to install the app.
+            <br>
+            An Android App Bundle, which is an archive file with an .aab suffix, contains the contents of an Android app project including some additional metadata that is not required at runtime. An AAB is a publishing format and is not installable on Android devices, it defers APK generation and signing to a later stage. When distributing your app through Google Play for example, Google Play's servers generate optimized APKs that contain only the resources and code that are required by a particular device that is requesting installation of the app.
+    <br>
+    Each Android app lives in its own security sandbox, protected by the following Android security features:
+            <br>
+            <ul>
+              <li>The Android operating system is a multi-user Linux system in which each app is a different user.</li>
+                <li>By default, the system assigns each app a unique Linux user ID (the ID is used only by the system and is unknown to the app). The system sets permissions for all the files in an app so that only the user ID assigned to that app can access them.</li>
+                <li>Each process has its own virtual machine (VM), so an app's code runs in isolation from other apps.</li>
+              <li>
+                By default, every app runs in its own Linux process. The Android system starts the process when any of the app's components need to be executed, and then shuts down the process when it's no longer needed or when the system must recover memory for other apps.
+              </li>
+          </ul>
+          <br>
+          The Android system implements the principle of least privilege. That is, each app, by default, has access only to the components that it requires to do its work and no more. This creates a very secure environment in which an app cannot access parts of the system for which it is not given permission. However, there are ways for an app to share data with other apps and for an app to access system services:
+          <br>
+          <ul>
+            <li>It's possible to arrange for two apps to share the same Linux user ID, in which case they are able to access each other's files. To conserve system resources, apps with the same user ID can also arrange to run in the same Linux process and share the same VM. The apps must also be signed with the same certificate.</li>
+             <li>An app can request permission to access device data such as the device's location, camera, and Bluetooth connection. The user has to explicitly grant these permissions. For more information, see Working with System Permissions.</li>
+            </ul>
+        </p>
+      </article>
+    </section>
+    <section class="main-section" id="Create_Android_Project">
+        <header>Create Android Project </header>
+        <article>
+          <p>
+             This lesson shows you how to create a new Android project with Android Studio, and it describes some of the files in the project.<br>
+    To create your new Android project, follow these steps:
+            <br>
+           <ol>
+             <li>Install the latest version of Android Studio.</li>
+              <li>In the Welcome to Android Studio window, click Create New Project.</li>
+              <li>In the Select a Project Template window, select Empty Activity and click Next.</li>
+              <li>In the Configure your project window, complete the following:
+               <ul>
+                 <li>Enter "My First App" in the Name field.</li>
+                 <li>Enter "com.example.myfirstapp" in the Package name field.</li>
+                 <li>If you'd like to place the project in a different folder, change its Save location.</li>
+                 <li>Select either Java or Kotlin from the Language drop-down menu.</li>
+                 <li>Select the lowest version of Android you want your app to support in the Minimum SDK field.</li>
+                 <li>If your app will require legacy library support, mark the Use legacy android.support libraries checkbox.</li>
+                 <li>Leave the other options as they are.</li>
+                </ul>
+               </li>
+              <li>Click Finish.</li>
+
+          </ol>
+             </p>
+      </article>
+    </section>
+      <section class="main-section" id="App_Compatibility">
+        <header>App Compatibility</header>
+        <article>
+          <p>
+            For Android, the term app compatibility means that your app runs properly on a specific version of the platform, typically the latest version. With each release, we make integral changes that improve privacy and security, and we implement changes that evolve the overall user experience across the OS. Sometimes these changes can affect your apps, so it’s important to take a look at the behavior changes that are included in each released version, test against them, and publish compatibility updates for your users.
+             </p>
+          <br>
+          <b>Why app compatibility is important</b><br>
+          <p>
+            App compatibility starts to affect your users immediately when they update to the latest version of Android, whether they’ve purchased a new device or installed an update on their current device. They’re excited to explore the latest version of Android, and they want to experience it with their favorite apps. If their apps don’t work properly, it can cause major issues both for them and for you.
+          </p><br>
+          <b>Compatibility framework tools</b><br>
+          <p>
+            To help you test for compatibility, we include as many of the breaking changes as possible each release in the compatibility framework. Including a change in the compatibility framework makes it toggleable, letting you force-enable or disable the changes individually from developer options or ADB. When using the compatibility framework, you don't need to change your app's targetSdkVersion or recompile your app for basic testing.
+          </p>
+          <b>Restrictions on non-SDK interfaces</b><br>
+          <p>
+            As part of our ongoing effort to gradually move developers away from non-SDK APIs, we update the lists of restricted non-SDK interfaces in each Android release. As always, your feedback and requests for public API equivalents are welcome.
+          </p>
+      </article>
+    </section>
+    <section class="main-section" id="Code_Examples">
+        <header>Code Examples</header>
+        <article>
+          <p> The MainActivity.java:<br>
+            <pre>
+            <code>
+             package first.javatpoint.com.welcome;
+
+    import android.support.v7.app.AppCompatActivity;
+    import android.os.Bundle;
+
+    public class MainActivity extends AppCompatActivity {
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+        }
+    }
+            </code>
+            </pre>
+          </p>
+            <p> The SecondActivity.java:<br>
+          <code>
+            package example.javatpoint.com.screenorientation;
+
+    import android.support.v7.app.AppCompatActivity;
+    import android.os.Bundle;
+
+    public class SecondActivity extends AppCompatActivity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_second);
+
+        }
+    }
+          </code>
+             </p>
+      <p> Example of unit Test:</p><br>
+      <code>
+        package com.example.android.testing.unittesting.BasicSample;
+
+    import org.junit.Test;
+
+    import static org.junit.Assert.assertFalse;
+    import static org.junit.Assert.assertTrue;
+
+
+    /**
+     * Unit tests for the EmailValidator logic.
+     */
+    public class EmailValidatorTest {
+
+
+        @Test
+        public void emailValidator_CorrectEmailSimple_ReturnsTrue() {
+            assertTrue(EmailValidator.isValidEmail("name@email.com"));
+        }
+
+        @Test
+        public void emailValidator_CorrectEmailSubDomain_ReturnsTrue() {
+            assertTrue(EmailValidator.isValidEmail("name@email.co.uk"));
+        }
+
+        @Test
+        public void emailValidator_InvalidEmailNoTld_ReturnsFalse() {
+            assertFalse(EmailValidator.isValidEmail("name@email"));
+        }
+
+        @Test
+        public void emailValidator_InvalidEmailDoubleDot_ReturnsFalse() {
+            assertFalse(EmailValidator.isValidEmail("name@email..com"));
+        }
+
+        @Test
+        public void emailValidator_InvalidEmailNoUsername_ReturnsFalse() {
+            assertFalse(EmailValidator.isValidEmail("@email.com"));
+        }
+
+        @Test
+        public void emailValidator_EmptyString_ReturnsFalse() {
+            assertFalse(EmailValidator.isValidEmail(""));
+        }
+
+        @Test
+        public void emailValidator_NullEmail_ReturnsFalse() {
+            assertFalse(EmailValidator.isValidEmail(null));
+        }
+    }
+      </code>
+      </article>
+    </section>
+    </main>
+
+
+      </body>
+      </html>
